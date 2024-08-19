@@ -313,9 +313,9 @@ print("Result for 'factorial(0)':", test_interpreter("factorial(0)"))  # Should 
 print("Result for 'factorial(7)':", test_interpreter("factorial(7)"))  # Should output 5040
 
 # # Lambda expression test cases
-# print("Result for '(Lambd x.(Lambd y. (x + y))) (3) (4)':", test_interpreter("(Lambd x.(Lambd y. (x + y))) (3) (4)"))  # Should output 7
-# print("Result for '(Lambd x.(Lambd y. (x * y))) (5) (2)':", test_interpreter("(Lambd x.(Lambd y. (x * y))) (5) (2)"))  # Should output 10
-# print("Result for '(Lambd x.(Lambd y. (x - y))) (7) (3)':", test_interpreter("(Lambd x.(Lambd y. (x - y))) (7) (3)"))  # Should output 4
-# print("Result for '(Lambd x.(Lambd y. (x / y))) (8) (2)':", test_interpreter("(Lambd x.(Lambd y. (x / y))) (8) (2)"))  # Should output 4
-# print("Result for '(Lambd x.(Lambd y. (x % y))) (9) (4)':", test_interpreter("(Lambd x.(Lambd y. (x % y))) (9) (4)"))  # Should output 1
+# print("Result for '(Lambda x.(Lambda y. (x + y))) (3) (4)':", test_interpreter("(Lambda x.(Lambda y. (x + y))) (3) (4)"))  # Should output 7
+# print("Result for '(Lambda x.(Lambda y. (x * y))) (5) (2)':", test_interpreter("(Lambda x.(Lambda y. (x * y))) (5) (2)"))  # Should output 10
+# print("Result for '(Lambda x.(Lambda y. (x - y))) (7) (3)':", test_interpreter("(Lambda x.(Lambda y. (x - y))) (7) (3)"))  # Should output 4
+# print("Result for '(Lambda x.(Lambda y. (x / y))) (8) (2)':", test_interpreter("(Lambda x.(Lambda y. (x / y))) (8) (2)"))  # Should output 4
+# print("Result for '(Lambda x.(Lambda y. (x % y))) (9) (4)':", test_interpreter("(Lambda x.(Lambda y. (x % y))) (9) (4)"))  # Should output 1
 
