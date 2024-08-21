@@ -2,6 +2,7 @@
 import re
 import math
 
+
 class Lexer:
     def __init__(self, text):
         self.text = text
@@ -29,6 +30,8 @@ class Lexer:
             self.advance()
         return result
 
+    # Part A, Section 1: Handling INTEGER data type
+    # This function parses and returns an integer from the input text
     def number(self):
         result = ''
         while self.current_char is not None and re.match(r'[0-9]', self.current_char):
@@ -36,6 +39,9 @@ class Lexer:
             self.advance()
         return int(result)
 
+    # Part A, Section 1: Parsing tokens, handling INTEGER and BOOLEAN data types
+    # Part A, Lexer implementation: Tokenizing source code
+    # This function tokenizes the input text, recognizing integers, booleans, and other tokens
     def parse(self):
         tokens = []
         while self.current_char is not None:
@@ -171,6 +177,8 @@ class Parser:
         body = self.boolean_expr()
         return ('lambda', arg, body)
 
+    # Part A, Section 2: Handling arithmetic operations (*, /, %)
+    # This function handles multiplication, division, and modulo operations
     def term(self):
         result = self.factor()
         while self.current_token is not None and self.current_token in '*/%':
@@ -184,6 +192,8 @@ class Parser:
                 result %= self.factor()
         return result
 
+    # Part A, Section 2: Handling arithmetic operations (+, -)
+    # This function handles addition and subtraction operations
     def expr(self):
         result = self.term()
         while self.current_token is not None and self.current_token in '+-':
@@ -195,6 +205,8 @@ class Parser:
                 result -= self.term()
         return result
 
+    # Part A, Section 2: Handling comparison operations (==, !=, >, <, >=, <=)
+    # This function handles comparison operations like ==, !=, >, <, >=, <=
     def comparison(self):
         left = self.expr()
         if self.current_token in ('==', '!=', '>', '<', '>=', '<='):
@@ -227,6 +239,8 @@ class Parser:
                 result = result or right
         return result
 
+    # Part A, Parser implementation: Building the AST according to BNF
+    # This function builds the Abstract Syntax Tree (AST) according to the language's BNF
     def parse(self):
         result = self.boolean_expr()
         while self.current_token is not None:
@@ -249,6 +263,10 @@ class Interpreter:
         self.tokens = self.lexer.parse()
         self.parser = Parser(self.tokens)
 
+    # Part A, Section 3: Handling function definitions and applications
+    # Part A, Section 4: Handling recursion in functions
+    # Part A, Interpreter implementation: Evaluating the AST and handling function calls
+    # This function evaluates expressions and manages function calls and recursion
     def eval_expr(self, expr, env={}):
         if isinstance(expr, int):
             return expr
@@ -268,6 +286,9 @@ class Interpreter:
                 return self.interpret_lambda(lambda_expr, arg_val, env)
         raise Exception(f"Invalid expression: {expr}")
 
+    # Part A, Section 3: Handling lambda expressions
+    # Part A, Interpreter implementation: Handling lambda expressions
+    # This function interprets and applies lambda expressions
     def interpret_lambda(self, lambda_expr, arg_val, env):
         _, arg, body = lambda_expr
         local_env = env.copy()
@@ -313,9 +334,9 @@ print("Result for 'factorial(0)':", test_interpreter("factorial(0)"))  # Should 
 print("Result for 'factorial(7)':", test_interpreter("factorial(7)"))  # Should output 5040
 
 # # Lambda expression test cases
-# print("Result for '(Lambda x.(Lambda y. (x + y))) (3) (4)':", test_interpreter("(Lambda x.(Lambda y. (x + y))) (3) (4)"))  # Should output 7
-# print("Result for '(Lambda x.(Lambda y. (x * y))) (5) (2)':", test_interpreter("(Lambda x.(Lambda y. (x * y))) (5) (2)"))  # Should output 10
-# print("Result for '(Lambda x.(Lambda y. (x - y))) (7) (3)':", test_interpreter("(Lambda x.(Lambda y. (x - y))) (7) (3)"))  # Should output 4
-# print("Result for '(Lambda x.(Lambda y. (x / y))) (8) (2)':", test_interpreter("(Lambda x.(Lambda y. (x / y))) (8) (2)"))  # Should output 4
-# print("Result for '(Lambda x.(Lambda y. (x % y))) (9) (4)':", test_interpreter("(Lambda x.(Lambda y. (x % y))) (9) (4)"))  # Should output 1
+print("Result for '(Lambda x.(Lambda y. (x + y))) (3) (4)':", test_interpreter("(Lambda x.(Lambda y. (x + y))) (3) (4)"))  # Should output 7
+print("Result for '(Lambda x.(Lambda y. (x * y))) (5) (2)':", test_interpreter("(Lambda x.(Lambda y. (x * y))) (5) (2)"))  # Should output 10
+print("Result for '(Lambda x.(Lambda y. (x - y))) (7) (3)':", test_interpreter("(Lambda x.(Lambda y. (x - y))) (7) (3)"))  # Should output 4
+print("Result for '(Lambda x.(Lambda y. (x / y))) (8) (2)':", test_interpreter("(Lambda x.(Lambda y. (x / y))) (8) (2)"))  # Should output 4
+print("Result for '(Lambda x.(Lambda y. (x % y))) (9) (4)':", test_interpreter("(Lambda x.(Lambda y. (x % y))) (9) (4)"))  # Should output 1
 
